@@ -1,6 +1,6 @@
 <template>
   <div id="dashboard">
-      <h3>Dashboard</h3>
+      <h3>Dashboard - {{employeesCount}} employees</h3>
         <ul class="collection with-header">
             <li class="collection-header">
                 <h4>Employees</h4>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'ViewEmployees',
@@ -60,6 +60,7 @@ export default {
   },
   computed: {
     ...mapState(['employees']),
+    ...mapGetters(['employeesCount']),
   },
   methods: {
     addNewEmployee() {

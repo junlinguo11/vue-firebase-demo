@@ -9,6 +9,9 @@ export default new Vuex.Store({
   state: {
     employees: [],
   },
+  getters: {
+    employeesCount: state => state.employees.length,
+  },
   mutations: {
     [types.GET_EMPLOYEE](state, { doc }) {
       const employee = doc.data();
