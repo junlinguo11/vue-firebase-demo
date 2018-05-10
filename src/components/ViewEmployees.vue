@@ -7,7 +7,7 @@
             </li>
             <li v-for="employee in employees" v-bind:key="employee.id" class="collection-item">
                 <div class="chip">{{employee.dept}}</div>{{employee.employee_id}}:{{employee.name}}
-                <i class="fa fa-trash" @click="deleteEmployee(employee.employee_id)"></i>
+                <i class="fa fa-trash" @click="deleteEmployee(employee.id)"></i>
             </li>
         </ul>
 

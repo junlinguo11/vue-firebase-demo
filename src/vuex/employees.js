@@ -20,7 +20,8 @@ export default new Vuex.Store({
         id: doc.id,
         employee_id: employee.employee_id,
         name: employee.name,
-        dept: employee.position,
+        dept: employee.dept,
+        position: employee.position,
       });
     },
     [types.ADD_EMPLOYEE](state, { newEmployee }) {
@@ -46,19 +47,20 @@ export default new Vuex.Store({
         })
         .catch();
     },
-    addEmployee({ commit }, newEmployee) {
+    addEmployee({ commit }, employee) {
+      const newEmployee = employee;
+
       return db.collection('employees').add(newEmployee)
-        .then(() => {
+        .then((docRef) => {
+          newEmployee.id = docRef.id;
           commit(types.ADD_EMPLOYEE, { newEmployee });
         });
     },
-    deleteEmployee({ commit }, employeeId) {
-      return db.collection('employees').where('employee_id', '==', employeeId).get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            doc.ref.delete();
-            commit(types.DELETE_EMPLOYEE, { doc });
-          });
+    deleteEmployee({ commit }, id) {
+      return db.collection('employees').doc(id).get()
+        .then((documentSnapshot) => {
+          documentSnapshot.ref.delete();
+          commit(types.DELETE_EMPLOYEE, { doc: documentSnapshot });
         });
     },
   },
