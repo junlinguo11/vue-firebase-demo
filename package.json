@@ -10,6 +10,10 @@
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/junlinguo11/vue-firebase-demo.git"
+  },
   "dependencies": {
     "firebase": "^5.0.1",
     "vue": "^2.5.2",
